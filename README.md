@@ -12,3 +12,7 @@ There's the first aim of this project create a telestrator android app prototype
 
     * XML file içersinde, önce attribute_name_, sonra widget kısaltması.
         Örnek, *<dimen name="padding_size_bt">24dp</dimen>
+
+    * Private memberlar, önce member olduğunu belirtmek için m, sonra değişken ismi, en son
+        widget kısaltması şeklindedir.
+        Örnek, "mFileChooser_bt", "mTitle_et"
