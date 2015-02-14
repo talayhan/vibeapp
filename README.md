@@ -15,3 +15,14 @@ There's the first aim of this project create a telestrator android app prototype
  * Private memberlar, önce member olduğunu belirtmek için m, sonra değişken ismi, en son
         widget kısaltması şeklindedir.
         Örnek, "mFileChooser_bt", "mTitle_et"
+
+
+###Dökümantasyon ve Notlar
+
+**Not:** __extends__ **View** şeklinde oluşturulan class lar, **XML** dosyasında, package name ile
+  gösterilebilmektedir. Buradan **android:width** veya **android:height** ayarlayabiliriz.
+
+###TODO
+
+    [-] Yeni bir CustomView class oluşturulacak, View dan türeyecek.
+    [-] CustomView test işlemi ve entegrasyonu.
