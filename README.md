@@ -22,7 +22,13 @@ There's the first aim of this project create a telestrator android app prototype
 **Not:** __extends__ **View** şeklinde oluşturulan class lar, **XML** dosyasında, package name ile
   gösterilebilmektedir. Buradan **android:width** veya **android:height** ayarlayabiliriz.
 
+
+**Not:__(02.16.2015)__** VideoView'u inherit eden bir widget üzerinde, View tarafından sağlanan, 
+    onDraw vesaire methodları ile Video üzerine çizim yapılamamakta. Şuan için geçici çözüm, 
+    VideoView üzerine Transparent olarak Layout koyup üstüne çizim işlemlerini gerçekleştirmek.
+     
 ###TODO
 
-    [-] Yeni bir CustomView class oluşturulacak, View dan türeyecek.
-    [-] CustomView test işlemi ve entegrasyonu.
+    [+] Yeni bir CustomView class oluşturulacak, View dan türeyecek.
+    [+] CustomView test işlemi ve entegrasyonu.( Bu çözüm yolunun uygun olmadığı tespit edilmiştir.)
+    [-] Transparent layout oluşturularak, VideoView üzerine eklenecektir.

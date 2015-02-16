@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="file_chooser">File Chooser</string>
+    <string name="file_chooser_branch">File Chooser Branch!</string>
 
 </resources>
