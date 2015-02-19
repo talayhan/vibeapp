@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:id="@+id/vibeTest_bt"
-        android:padding="24dp"
+        android:padding="@dimen/padding_size_bt"
         android:text="@string/menu_screen_header"
         />
 

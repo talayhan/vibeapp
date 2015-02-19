@@ -19,6 +19,7 @@ public class MainActivity extends ActionBarActivity {
 
     /* private members */
     private Button mFileChooser_bt;
+    private Button mVibe_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,18 @@ public class MainActivity extends ActionBarActivity {
                 startActivityForResult(intent, Constants.REQUEST_CHOOSER);
             }
         });
+        
+        /* initialize video test button */
+        mVibe_bt = (Button) findViewById(R.id.vibeTest_bt);
+        mVibe_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create the intent to start video activity
+                Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

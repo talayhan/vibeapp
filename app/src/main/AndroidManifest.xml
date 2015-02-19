@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- User created activities -->
+        <activity android:name=".LocalVideoActivity" />
 
         <!-- Using Android File Chooser Library -->
         <activity
