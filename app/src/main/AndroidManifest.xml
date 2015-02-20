@@ -23,6 +23,8 @@
         
         <!-- User created activities -->
         <activity android:name=".LocalVideoActivity" />
+        <activity android:name=".DrawingActivity" 
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
         <!-- Using Android File Chooser Library -->
         <activity
