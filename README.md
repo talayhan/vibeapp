@@ -33,3 +33,7 @@ There's the first aim of this project create a telestrator android app prototype
     [+] CustomView test işlemi ve entegrasyonu.( Bu çözüm yolunun uygun olmadığı tespit edilmiştir.)
     [-] Transparent layout oluşturularak, VideoView üzerine eklenecektir.
         [+] Transparent Layout, Manifest ekleme işlemi yapılacak.
+
+###Tasarım TODO-List
+
+    [-] Video dolarken güzel animasyonlu spinner ekle.

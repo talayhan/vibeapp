@@ -32,19 +32,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
-            android:id="@+id/id_one"
+            android:id="@+id/id_one_bt"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2"
-            android:id="@+id/id_two"
+            android:id="@+id/id_two_bt"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
-            android:id="@+id/id_three"
+            android:id="@+id/id_three_bt"
             />
         <Button
             android:layout_width="wrap_content"
