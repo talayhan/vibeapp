@@ -31,9 +31,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/id_one_bt"
-            />
+            android:id="@+id/play_bt"
+            android:background="@drawable/abc_btn_check_to_on_mtrl_000" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

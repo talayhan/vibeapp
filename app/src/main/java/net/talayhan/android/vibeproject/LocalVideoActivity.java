@@ -1,9 +1,11 @@
 package net.talayhan.android.vibeproject;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,18 +61,21 @@ public class LocalVideoActivity extends Activity {
         
         
         /* initialize the button */
-        mPlayPause_bt = (Button) findViewById(R.id.id_one_bt);
+        mPlayPause_bt = (Button) findViewById(R.id.play_bt);
         mPlayPause_bt.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
                 if (!isPause){
                     mVideoView_vw.pause();
                     Toast.makeText(LocalVideoActivity.this,"Clicked pause :" + isPause,Toast.LENGTH_LONG).show();
+                    mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_015));
                     isPause = true;
                 }
                 else {
                     mVideoView_vw.start();
                     Toast.makeText(LocalVideoActivity.this,"Clicked start :" + isPause,Toast.LENGTH_LONG).show();
+                    mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_000));
                     isPause = false;
                 }
             }
