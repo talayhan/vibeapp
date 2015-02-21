@@ -3,23 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    >
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3"
-        >
+    android:baselineAligned="false">
+
 
         <net.talayhan.android.vibeproject.TranslucentDrawingView
-            android:layout_width="fill_parent"
+            android:layout_width="300dp"
             android:layout_height="fill_parent"
-            
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
             />
-    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,13 +20,13 @@
         >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:id="@+id/play_bt"
             android:background="@drawable/abc_btn_check_to_on_mtrl_000" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="2"
             android:id="@+id/id_two_bt"
             />
@@ -61,8 +52,8 @@
             android:text="6"
             />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="7"
             />
         <Button
