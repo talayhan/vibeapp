@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     >
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -14,11 +13,11 @@
         <net.talayhan.android.vibeproject.TranslucentDrawingView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            
             android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:id="@+id/major_videoView"
             />
     </RelativeLayout>
 
@@ -32,20 +31,19 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/id_one"
-            />
+            android:id="@+id/play_bt"
+            android:background="@drawable/abc_btn_check_to_on_mtrl_000" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2"
-            android:id="@+id/id_two"
+            android:id="@+id/id_two_bt"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
-            android:id="@+id/id_three"
+            android:id="@+id/id_three_bt"
             />
         <Button
             android:layout_width="wrap_content"

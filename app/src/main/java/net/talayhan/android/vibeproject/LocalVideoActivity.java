@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,9 +20,7 @@ import android.widget.VideoView;
 public class LocalVideoActivity extends Activity {
 
     /* private members */
-    private VideoView mVideoView_vw;
-    private Button mPlayPause_bt;
-    private Boolean isPause = false;
+    public static VideoView mVideoView_vw;
 
     /* define string to test VideoView component */
     String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
@@ -47,6 +46,10 @@ public class LocalVideoActivity extends Activity {
                         mVideoView_vw.setVideoURI(vidUri);
                         mVideoView_vw.setMediaController(new MediaController(LocalVideoActivity.this));
                         mVideoView_vw.start();
+                        
+                        /* Start transparent activity */
+                        Intent intent = new Intent(LocalVideoActivity.this, DrawingActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("Local", new DialogInterface.OnClickListener() {
@@ -57,29 +60,6 @@ public class LocalVideoActivity extends Activity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
-        
-        
-        
-        /* initialize the button */
-        mPlayPause_bt = (Button) findViewById(R.id.play_bt);
-        mPlayPause_bt.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-            @Override
-            public void onClick(View v) {
-                if (!isPause){
-                    mVideoView_vw.pause();
-                    Toast.makeText(LocalVideoActivity.this,"Clicked pause :" + isPause,Toast.LENGTH_LONG).show();
-                    mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_015));
-                    isPause = true;
-                }
-                else {
-                    mVideoView_vw.start();
-                    Toast.makeText(LocalVideoActivity.this,"Clicked start :" + isPause,Toast.LENGTH_LONG).show();
-                    mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_000));
-                    isPause = false;
-                }
-            }
-        });
 
     }
 }
