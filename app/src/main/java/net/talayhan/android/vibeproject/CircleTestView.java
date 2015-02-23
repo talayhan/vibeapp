@@ -183,7 +183,7 @@ public class CircleTestView extends View {
             case MotionEvent.ACTION_MOVE:
                 final int pointerCount = event.getPointerCount();
 
-                Log.w(TAG, "Move");
+                Log.w(TAG, "ACTION_MOVE");
 
                 for (actionIndex = 0; actionIndex < pointerCount; actionIndex++) {
                     // Some pointer has moved, search it by pointer id

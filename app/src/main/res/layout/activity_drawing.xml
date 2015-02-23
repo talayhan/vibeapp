@@ -9,15 +9,13 @@
         android:layout_width="300dp"
         android:layout_height="fill_parent">
         <net.talayhan.android.vibeproject.CircleTestView
-            android:layout_width="300dp"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
         <SeekBar
             android:id="@+id/songProgressBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
             android:thumb="@drawable/seek_handler"
             android:progressDrawable="@drawable/seekbar_progress"
@@ -34,45 +32,45 @@
         android:layout_weight="1"
         >
 
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:id="@+id/play_bt"
-            android:background="@drawable/abc_btn_check_to_on_mtrl_000" />
-        <Button
+            android:background="@drawable/img_btn_play" />
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:text="Frw"
+            android:background="@drawable/img_btn_forward"
             android:id="@+id/forward_bt"
             />
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
-            android:text="3"
+            android:background="@drawable/img_btn_backward"
             android:id="@+id/backward_bt"
             />
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
-            android:text="4"
+            android:background="@drawable/img_btn_repeat"
             android:id="@+id/accelarator"
             />
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
-            android:text="5"
             />
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
-            android:text="6"
+            android:text=" "
             />
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:text="7"
             />
-        <Button
+        <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:text="8"

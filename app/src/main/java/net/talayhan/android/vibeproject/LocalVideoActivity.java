@@ -12,6 +12,7 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -94,9 +95,18 @@ public class LocalVideoActivity extends Activity {
         mVideoView_vw.start();
         
         Intent transparentLayoutInt = new Intent(LocalVideoActivity.this, DrawingActivity.class);
-        startActivityForResult(transparentLayoutInt,Constants.REQUEST_CHOOSER);
+        startActivityForResult(transparentLayoutInt,Constants.REQUEST_FINISH);
 
-        
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode)
+        {
+            case Constants.REQUEST_FINISH:
+                    finish();
+                break;
+        }
     }
 }
