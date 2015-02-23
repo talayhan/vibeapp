@@ -7,5 +7,6 @@
     <string name="file_chooser">File Chooser</string>
     <string name="file_chooser_branch">File Chooser Branch!</string>
     <string name="menu_screen_header">Vibe Project Title!</string>
+    <string name="coordinates_chart">Coordinates Chart</string>
 
 </resources>

@@ -39,13 +39,11 @@ public class DrawingActivity extends Activity {
                 if (!isPause){
                     LocalVideoActivity.mVideoView_vw.pause();
                     Toast.makeText(DrawingActivity.this, "Clicked pause :" + isPause, Toast.LENGTH_LONG).show();
-                    //mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_015));
                     isPause = true;
                 }
                 else {
                     LocalVideoActivity.mVideoView_vw.start();
                     Toast.makeText(DrawingActivity.this,"Clicked start :" + isPause,Toast.LENGTH_LONG).show();
-                    //mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_000));
                     isPause = false;
                 }
             }
@@ -55,7 +53,7 @@ public class DrawingActivity extends Activity {
         mForward_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocalVideoActivity.mVideoView_vw.seekTo(540);
+                LocalVideoActivity.mVideoView_vw.seekTo(3400);
             }
         });
 

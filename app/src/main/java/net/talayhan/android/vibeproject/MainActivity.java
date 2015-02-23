@@ -3,9 +3,11 @@ package net.talayhan.android.vibeproject;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,20 +19,69 @@ import com.ipaulpro.afilechooser.utils.FileUtils;
 
 import java.io.File;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 public class MainActivity extends ActionBarActivity {
 
     /* private members */
     private Button mFileChooser_bt;
-    private Button mVibe_bt;
+    private Button mChart_bt;
     private String videoPath;
+    private SweetAlertDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mFileChooser_bt = (Button) findViewById(R.id.fileChooser_bt);
+        mFileChooser_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {        
+                /* Progress dialog */
+                pDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("Network Type");
+                pDialog.setContentText("How would you like to watch video?");
+                pDialog.setConfirmText("Local");
+                pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        // Local
+                        // Create the ACTION_GET_CONTENT Intent
+                        Intent getContentIntent = FileUtils.createGetContentIntent();
 
+                        Intent intent = Intent.createChooser(getContentIntent, "Select a file");
+                        startActivityForResult(intent, Constants.REQUEST_CHOOSER);
+
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                });
+                pDialog.setCancelText("Internet");
+                pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                });
+                pDialog.setCancelable(true);
+                pDialog.show();
+
+            }
+        });
+        
+        mChart_bt = (Button) findViewById(R.id.chart_bt);
+        mChart_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // nothing do it yet
+            }
+        });
+        
+        
+        
+        /*
         new AlertDialog.Builder(this)
                 .setTitle("Internet or Local?")
                 .setMessage("Would you like to watch the video on the internet or local storage?")
@@ -52,23 +103,11 @@ public class MainActivity extends ActionBarActivity {
                         Intent intent = new Intent(LocalVideoActivity.this, DrawingActivity.class);
                         startActivityForResult(intent, Constants.REQUEST_CHOOSER);
                         
-                        */
+                        *
                     }
                 })
-                .setNegativeButton("Local", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Local
-                        // Create the ACTION_GET_CONTENT Intent
-                        Intent getContentIntent = FileUtils.createGetContentIntent();
 
-                        Intent intent = Intent.createChooser(getContentIntent, "Select a file");
-                        startActivityForResult(intent, Constants.REQUEST_CHOOSER);
-
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+                */
 
         /* initialize file chooser button *
         mFileChooser_bt = (Button) findViewById(R.id.fileChooser_bt);
@@ -119,7 +158,6 @@ public class MainActivity extends ActionBarActivity {
                     Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
                     i.putExtra(Constants.EXTRA_ANSWER_IS_TRUE,path);
                     startActivity(i);
-
 
                 }
                 break;

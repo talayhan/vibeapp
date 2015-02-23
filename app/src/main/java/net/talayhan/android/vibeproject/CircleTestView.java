@@ -25,6 +25,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by root on 2/20/15.
  */
@@ -42,6 +44,7 @@ public class CircleTestView extends View {
     private Bitmap canvasBitmap;
 
     private static final String TAG = "CirclesDrawingView";
+    private boolean isFirst = true;
 
     /** Main bitmap */
     private Bitmap mBitmap = null;
@@ -146,6 +149,36 @@ public class CircleTestView extends View {
                 // it's the first pointer, so clear all existing pointers data
                 clearCirclePointer();
 
+                if (isFirst) {
+                    isFirst = false;
+                    LocalVideoActivity.mVideoView_vw.pause();   // pause the video and show alert
+                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Good job!")
+                            .setContentText("You clicked the button!")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    LocalVideoActivity.mVideoView_vw.start();   // start the video
+                                    sweetAlertDialog.dismissWithAnimation();
+                                }
+                            })
+                            .show();
+                    /*
+                    SweetAlertDialog test = new SweetAlertDialog(getContext());
+                            test.setTitleText("Here's a message Box!");
+                            test.setContentText("It's pretty, label it?");
+                            test.setCancelable(true);
+                            test.setConfirmText("Okay");
+                            test.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    LocalVideoActivity.mVideoView_vw.start();   // start the video
+                                }
+                            });
+                            test.show();
+                    */
+                }
+                    
                 xTouch = (int) event.getX(0);
                 yTouch = (int) event.getY(0);
 

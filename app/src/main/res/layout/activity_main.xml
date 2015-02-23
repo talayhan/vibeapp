@@ -8,26 +8,19 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_size_tv"
-        android:id="@+id/title_tv"
-        />
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fileChooser_bt"
         android:padding="@dimen/padding_size_bt"
         android:text="@string/file_chooser"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:id="@+id/vibeTest_bt"
+        android:id="@+id/chart_bt"
         android:padding="@dimen/padding_size_bt"
-        android:text="@string/menu_screen_header"
+        android:text="@string/coordinates_chart"
         />
 
 
