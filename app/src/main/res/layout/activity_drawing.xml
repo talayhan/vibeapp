@@ -8,13 +8,21 @@
     <FrameLayout
         android:layout_width="300dp"
         android:layout_height="fill_parent">
-        <net.talayhan.android.vibeproject.TranslucentDrawingView
+        <net.talayhan.android.vibeproject.CircleTestView
             android:layout_width="300dp"
             android:layout_height="fill_parent"
             />
         <SeekBar
+            android:id="@+id/songProgressBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:thumb="@drawable/seek_handler"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:layout_gravity="bottom"
             />
     </FrameLayout>
@@ -34,7 +42,7 @@
         <Button
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
-            android:text="2"
+            android:text="Frw"
             android:id="@+id/forward_bt"
             />
         <Button

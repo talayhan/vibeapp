@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/album_art_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:text="Album Art"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/album_art"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/album_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/album_art_text"
+        android:layout_below="@+id/album_art"
+        android:layout_marginTop="24dp"
+        android:text="Album Name :"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/artist_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/album_name_text"
+        android:layout_below="@+id/album_name_text"
+        android:layout_marginTop="43dp"
+        android:text="Artist Name :"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/genre_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/artist_name_text"
+        android:layout_below="@+id/artist_name_text"
+        android:layout_marginTop="39dp"
+        android:text="Genre :"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/genre_text"
+        android:layout_alignBottom="@+id/genre_text"
+        android:layout_toRightOf="@+id/album_art_text"
+        android:text="null"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/Album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/artist_name_text"
+        android:layout_alignLeft="@+id/album_art"
+        android:text="null"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/genre_text"
+        android:layout_alignLeft="@+id/Album"
+        android:text="null"
+        android:textSize="18dp" />
+
+</RelativeLayout>

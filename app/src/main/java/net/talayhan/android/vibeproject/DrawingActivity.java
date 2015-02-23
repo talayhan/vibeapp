@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 /**
@@ -14,7 +15,9 @@ import android.widget.Toast;
 public class DrawingActivity extends Activity {
 
     private Button mPlayPause_bt;
+    private Button mForward_bt;
     private Boolean isPause = false;
+    private SeekBar videoProgressbar_sb;
 
 
     @Override
@@ -40,6 +43,14 @@ public class DrawingActivity extends Activity {
                     mPlayPause_bt.setBackground(getResources().getDrawable(R.drawable.abc_btn_check_to_on_mtrl_000));
                     isPause = false;
                 }
+            }
+        });
+        
+        mForward_bt = (Button) findViewById(R.id.forward_bt);
+        mForward_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalVideoActivity.mVideoView_vw.seekTo(540);
             }
         });
 
