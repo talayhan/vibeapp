@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':mpandroidchartlibrary-1-7-4'
 include ':AndroidFileChooser'

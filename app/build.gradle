@@ -28,4 +28,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile project(':AndroidFileChooser')
     compile 'cn.pedant.sweetalert:library:1.3'
+    compile project(':mpandroidchartlibrary-1-7-4')
 }
