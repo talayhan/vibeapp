@@ -5,13 +5,20 @@
     android:orientation="horizontal"
     android:baselineAligned="false">
 
-
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="fill_parent">
         <net.talayhan.android.vibeproject.TranslucentDrawingView
             android:layout_width="300dp"
             android:layout_height="fill_parent"
             />
-
-
+        <SeekBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            />
+    </FrameLayout>
+        
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,27 +35,28 @@
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:text="2"
-            android:id="@+id/id_two_bt"
+            android:id="@+id/forward_bt"
             />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="3"
-            android:id="@+id/id_three_bt"
+            android:id="@+id/backward_bt"
             />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="4"
+            android:id="@+id/accelarator"
             />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="5"
             />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="6"
             />
         <Button
@@ -57,8 +65,8 @@
             android:text="7"
             />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
             android:text="8"
             />
     </LinearLayout>
