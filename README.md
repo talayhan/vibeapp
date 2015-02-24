@@ -41,4 +41,9 @@ There's the first aim of this project create a telestrator android app prototype
 
 ###Tasarım TODO-List
 
-    [-] Video dolarken güzel animasyonlu spinner ekle.
+
+###Done-List
+
+    [+] Video dolarken güzel animasyonlu spinner ekle. [02.23.15]
+    [+] Graph chart library eklendi. [02.23.15]
+    [+] Sweet Alert Dialog library eklendi. [02.23.15]
