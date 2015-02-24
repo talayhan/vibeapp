@@ -154,7 +154,7 @@ public class CircleTestView extends View {
                     LocalVideoActivity.mVideoView_vw.pause();   // pause the video and show alert
                     new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Good job!")
-                            .setContentText("You clicked the button!")
+                            .setContentText("You labeled the person!")
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {

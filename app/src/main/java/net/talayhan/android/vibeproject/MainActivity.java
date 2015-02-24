@@ -28,7 +28,10 @@ public class MainActivity extends ActionBarActivity {
     private Button mFileChooser_bt;
     private Button mChart_bt;
     private String videoPath;
+    private String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
+
     private SweetAlertDialog pDialog;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,12 @@ public class MainActivity extends ActionBarActivity {
                 pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                        // Create the intent to start video activity
+                        Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
+                        i.putExtra(Constants.EXTRA_ANSWER_IS_TRUE,vidAddress);
+                        startActivity(i);
+
                         sweetAlertDialog.dismissWithAnimation();
                     }
                 });
@@ -92,6 +101,7 @@ public class MainActivity extends ActionBarActivity {
                         // Internet
                             /* define string to test VideoView component *
                         vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
+                        
                         vidUri = Uri.parse(vidAddress);
                             
                             /* Custom video settings for internet *

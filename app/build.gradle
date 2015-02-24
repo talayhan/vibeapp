@@ -29,4 +29,5 @@ dependencies {
     compile project(':AndroidFileChooser')
     compile 'cn.pedant.sweetalert:library:1.3'
     compile project(':mpandroidchartlibrary-1-7-4')
+    compile project(':discreteSeekBar')
 }

@@ -22,8 +22,10 @@
         </activity>
         
         <!-- User created activities -->
-        <activity android:name=".LocalVideoActivity" />
+        <activity android:name=".LocalVideoActivity"
+                  android:screenOrientation="portrait"/>
         <activity android:name=".DrawingActivity"
+                  android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
         <!-- Using Android File Chooser Library -->
