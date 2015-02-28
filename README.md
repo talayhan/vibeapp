@@ -33,17 +33,22 @@ There's the first aim of this project create a telestrator android app prototype
 
 ###TODO
 
-    [+] Yeni bir CustomView class oluşturulacak, View dan türeyecek.
-    [+] CustomView test işlemi ve entegrasyonu.( Bu çözüm yolunun uygun olmadığı tespit edilmiştir.)
-    [+] Transparent layout oluşturularak, VideoView üzerine eklenecektir.
-        [+] Transparent Layout, Manifest ekleme işlemi yapılacak.
     
+    [-] Seekbar implement edilecek.
+    [-] Chart library test ve implementasyon detayları.
 
 ###Tasarım TODO-List
-
+    
 
 ###Done-List
+
+    [+] Yeni bir CustomView class oluşturulacak, View dan türeyecek.
+        [+] CustomView test işlemi ve entegrasyonu.( Bu çözüm yolunun uygun olmadığı tespit edilmiştir.)
+        [+] Transparent layout oluşturularak, VideoView üzerine eklenecektir.
+            [+] Transparent Layout, Manifest ekleme işlemi yapılacak.
 
     [+] Video dolarken güzel animasyonlu spinner ekle. [02.23.15]
     [+] Graph chart library eklendi. [02.23.15]
     [+] Sweet Alert Dialog library eklendi. [02.23.15]
+    [+] Yeni tasarım button eklenecek. [02.28.15]
+    [+] Chart library entegrasyonu.

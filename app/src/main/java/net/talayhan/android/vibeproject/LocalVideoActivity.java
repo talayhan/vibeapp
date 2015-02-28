@@ -1,29 +1,15 @@
 package net.talayhan.android.vibeproject;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
-import com.ipaulpro.afilechooser.utils.FileUtils;
-
-import java.io.File;
 
 /**
  * Created by root on 2/19/15.
@@ -64,7 +50,7 @@ public class LocalVideoActivity extends Activity {
         Toast.makeText(LocalVideoActivity.this,vidAddress, Toast.LENGTH_LONG).show();
 
         vidUri = Uri.parse(vidAddress);
-        
+
         /*
         getInit();
         metaRetriver = new MediaMetadataRetriever(); 

@@ -1,18 +1,18 @@
 package net.talayhan.android.vibeproject;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.provider.Settings;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.Toast;
 
 import com.ipaulpro.afilechooser.utils.FileUtils;
@@ -65,13 +65,29 @@ public class MainActivity extends ActionBarActivity {
                 pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        
+                        /* check the device network state */
+                        if (!isOnline()){
+                            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
+                                    .setContentText("Your device is now offline!\n" +
+                                            "Please open your Network.")
+                                    .setTitleText("Open Network Connection")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            showNoConnectionDialog(MainActivity.this);
+                                        }
+                                    })
+                                    .show();
+                        }else {
 
-                        // Create the intent to start video activity
-                        Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
-                        i.putExtra(Constants.EXTRA_ANSWER_IS_TRUE,vidAddress);
-                        startActivity(i);
+                            // Create the intent to start video activity
+                            Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
+                            i.putExtra(Constants.EXTRA_ANSWER_IS_TRUE, vidAddress);
+                            startActivity(i);
 
-                        sweetAlertDialog.dismissWithAnimation();
+                            sweetAlertDialog.dismissWithAnimation();
+                        }
                     }
                 });
                 pDialog.setCancelable(true);
@@ -84,7 +100,8 @@ public class MainActivity extends ActionBarActivity {
         mChart_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // nothing do it yet
+                Intent i = new Intent(MainActivity.this, ChartActivity.class);
+                startActivityForResult(i, Constants.REQUEST_CHART);
             }
         });
         
@@ -172,6 +189,45 @@ public class MainActivity extends ActionBarActivity {
                 }
                 break;
         }
+    }
+    
+    /*
+    * This method checks network situation, if device is airplane mode or something went wrong on
+    * network stuff. Method returns false, otherwise return true.
+    *
+    * - This function inspired by below link,
+    * http://stackoverflow.com/questions/1560788/how-to-check-internet-access-on-android-inetaddress-never-timeouts
+    * @return boolean - network state 
+    * * * */
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    /**
+     * Display a dialog that user has no internet connection
+     * @param ctx1
+     *
+     * Code from: http://osdir.com/ml/Android-Developers/2009-11/msg05044.html
+     */
+    public static void showNoConnectionDialog(Context ctx1) {
+        final Context ctx = ctx1;
+        final SweetAlertDialog builder = new SweetAlertDialog(ctx, SweetAlertDialog.SUCCESS_TYPE);
+        builder.setCancelable(true);
+        builder.setContentText("Open internet connection");
+        builder.setTitle("No connection error!");
+        builder.setConfirmText("Open wirless.");
+        builder.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                ctx.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                builder.dismissWithAnimation();     
+            }
+        });
+
+        builder.show();
     }
 
     @Override

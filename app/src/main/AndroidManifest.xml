@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.talayhan.android.vibeproject" >
+    package="net.talayhan.android.vibeproject">
 
     <!-- Using Permissions -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -23,10 +24,11 @@
         
         <!-- User created activities -->
         <activity android:name=".LocalVideoActivity"
-                  android:screenOrientation="portrait"/>
+                  android:screenOrientation="landscape"/>
         <activity android:name=".DrawingActivity"
-                  android:screenOrientation="portrait"
+                  android:screenOrientation="landscape"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity android:name=".ChartActivity" />
 
         <!-- Using Android File Chooser Library -->
         <activity
