@@ -35,7 +35,10 @@ There's the first aim of this project create a telestrator android app prototype
 
     
     [-] Seekbar implement edilecek.
+    [-] Playback implement edilecek.
+        [-] Belirli saniyelerde draw etme işlemi. Bitmap vs.
     [-] Chart library test ve implementasyon detayları.
+    
 
 ###Tasarım TODO-List
     
