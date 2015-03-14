@@ -24,7 +24,7 @@
         
         <!-- User created activities -->
         <activity android:name=".LocalVideoActivity"
-                  android:screenOrientation="landscape"/>
+                  />
         <activity android:name=".DrawingActivity"
                   android:screenOrientation="landscape"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />

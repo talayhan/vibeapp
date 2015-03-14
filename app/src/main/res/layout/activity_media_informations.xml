@@ -4,6 +4,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="null"
+        android:textSize="18dp" />
+
+
+    <!--
+    
     <TextView
         android:id="@+id/album_art_text"
         android:layout_width="wrap_content"
@@ -78,5 +90,27 @@
         android:layout_alignLeft="@+id/Album"
         android:text="null"
         android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/all_information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/artist_name_text"
+        android:layout_below="@+id/artist_name_text"
+        android:layout_marginTop="95dp"
+        android:text="All other informations :"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/all_information_text"
+        android:layout_alignBottom="@+id/all_information_text"
+        android:layout_toRightOf="@+id/all_information_text"
+        android:text="null"
+        android:textSize="18dp" />
+
+-->
 
 </RelativeLayout>

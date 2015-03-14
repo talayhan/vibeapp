@@ -38,6 +38,7 @@ There's the first aim of this project create a telestrator android app prototype
     [-] Playback implement edilecek.
         [-] Belirli saniyelerde draw etme işlemi. Bitmap vs.
     [-] Chart library test ve implementasyon detayları.
+    [-] Real-time senkronizasyon için başta Firebase kullanılacak.
     
 
 ###Tasarım TODO-List
@@ -55,3 +56,7 @@ There's the first aim of this project create a telestrator android app prototype
     [+] Sweet Alert Dialog library eklendi. [02.23.15]
     [+] Yeni tasarım button eklenecek. [02.28.15]
     [+] Chart library entegrasyonu.
+-----------------------
+    [+] Video information ekranı tasarlandı, [03.06.15]
+        [+]video bilgileri çekilmesi için araştırma yapıldı.
+    [+] Firebase için küçük bir test uygulaması yazıldı. [03.10.15]

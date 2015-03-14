@@ -59,13 +59,13 @@
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:text="Frw"
-            android:background="@drawable/img_btn_forward"
+            android:background="@drawable/btn_forward"
             android:id="@+id/forward_bt"
             />
         <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
-            android:background="@drawable/img_btn_backward"
+            android:background="@drawable/btn_backward"
             android:id="@+id/backward_bt"
             />
         <ImageButton
