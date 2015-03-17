@@ -42,6 +42,14 @@ There's the first aim of this project create a telestrator android app prototype
     
 
 ###Tasarım TODO-List
+
+-----------------
+
+###In-Progress
+
+    [-] Take a partial screenshot and save image to sdcard.
+
+###Testing
     
 
 ###Done-List
