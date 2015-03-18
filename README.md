@@ -50,7 +50,8 @@ There's the first aim of this project create a telestrator android app prototype
     [-] Take a partial screenshot and save image to sdcard.
 
 ###Testing
-    
+    [-] There is a bug when user change the screen orientation portrait to landscape.
+    [-] When user press the back button playing the video,
 
 ###Done-List
 
