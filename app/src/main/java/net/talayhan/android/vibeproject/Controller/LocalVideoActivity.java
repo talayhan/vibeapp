@@ -1,9 +1,7 @@
-package net.talayhan.android.vibeproject;
+package net.talayhan.android.vibeproject.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
@@ -13,6 +11,9 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import net.talayhan.android.vibeproject.R;
+import net.talayhan.android.vibeproject.Util.Constants;
 
 /**
  * Created by root on 2/19/15.

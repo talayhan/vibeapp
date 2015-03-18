@@ -12,7 +12,7 @@
         android:layout_weight="8"
         android:orientation="vertical">
         
-        <net.talayhan.android.vibeproject.CircleTestView
+        <net.talayhan.android.vibeproject.View.CircleTestView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="5"

@@ -1,17 +1,10 @@
-package net.talayhan.android.vibeproject;
+package net.talayhan.android.vibeproject.View;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,17 +12,16 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
-import android.os.Environment;
-import android.text.Editable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.VideoView;
+
+import net.talayhan.android.vibeproject.Controller.LocalVideoActivity;
+import net.talayhan.android.vibeproject.R;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 

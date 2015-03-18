@@ -1,4 +1,4 @@
-package net.talayhan.android.vibeproject;
+package net.talayhan.android.vibeproject.Controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ipaulpro.afilechooser.utils.FileUtils;
+
+import net.talayhan.android.vibeproject.R;
+import net.talayhan.android.vibeproject.Util.Constants;
 
 import java.io.File;
 

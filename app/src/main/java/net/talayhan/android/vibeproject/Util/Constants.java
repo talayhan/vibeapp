@@ -1,4 +1,4 @@
-package net.talayhan.android.vibeproject;
+package net.talayhan.android.vibeproject.Util;
 
 /**
  * Created by root on 2/12/15.

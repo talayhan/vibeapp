@@ -1,4 +1,4 @@
-package net.talayhan.android.vibeproject;
+package net.talayhan.android.vibeproject.Controller;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -9,6 +9,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.LimitLine;
 import com.github.mikephil.charting.utils.YLabels;
+
+import net.talayhan.android.vibeproject.R;
 
 import java.util.ArrayList;
 
