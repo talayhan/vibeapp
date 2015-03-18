@@ -38,13 +38,13 @@ public class DrawingActivity extends Activity {
             public void onClick(View v) {
                 if (!isPause){
                     LocalVideoActivity.mVideoView_vw.pause();
-                    mPlayPause_bt.setImageResource(R.drawable.btn_pause);
+                    mPlayPause_bt.setImageResource(R.drawable.btn_play);
                     Toast.makeText(DrawingActivity.this, "Clicked pause :" + isPause, Toast.LENGTH_LONG).show();
                     isPause = true;
                 }
                 else {
                     LocalVideoActivity.mVideoView_vw.start();
-                    mPlayPause_bt.setImageResource(R.drawable.btn_play);
+                    mPlayPause_bt.setImageResource(R.drawable.btn_pause);
                     Toast.makeText(DrawingActivity.this,"Clicked start :" + isPause,Toast.LENGTH_LONG).show();
                     isPause = false;
                 }

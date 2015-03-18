@@ -1,5 +1,9 @@
 package net.talayhan.android.vibeproject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -15,6 +19,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.os.Environment;
 import android.text.Editable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -24,6 +29,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -31,7 +37,9 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  * Created by root on 2/20/15.
  */
 public class CircleTestView extends View {
-
+    
+    public static int i = 0;
+    
     //drawing path
     private Path drawPath;
     //drawing and canvas paint
@@ -163,20 +171,6 @@ public class CircleTestView extends View {
                                 }
                             })
                             .show();
-                    /*
-                    SweetAlertDialog test = new SweetAlertDialog(getContext());
-                            test.setTitleText("Here's a message Box!");
-                            test.setContentText("It's pretty, label it?");
-                            test.setCancelable(true);
-                            test.setConfirmText("Okay");
-                            test.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    LocalVideoActivity.mVideoView_vw.start();   // start the video
-                                }
-                            });
-                            test.show();
-                    */
                 }
                     
                 xTouch = (int) event.getX(0);
@@ -267,7 +261,40 @@ public class CircleTestView extends View {
 
         return super.onTouchEvent(event) || handled;
     }
+    
+/*
+    private void saveScreenshotToSDCard(VideoView vv){
+        Bitmap bitmap;
+        
+        
+        //v1.setDrawingCacheEnabled(true);
+        //bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+        bitmap = vv.
 
+        //v1.setDrawingCacheEnabled(false);
+
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+
+        //you can create a new file name "test.jpg" in sdcard folder.
+        File f = new File(Environment.getExternalStorageDirectory()
+                + File.separator + "test" + i++ + ".jpg");
+        try {
+            //write the bytes in file
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+
+            // remember close de FileOutput
+            fo.close();
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("[+] SDCARD DEBUG","Screenshot");
+    }
+*/
+    
     /**
      * Clears all CircleArea - pointer id relations
      */
@@ -306,7 +333,6 @@ public class CircleTestView extends View {
 
         return touchedCircle;
     }
-
 
     /**
      * Determines touched circle

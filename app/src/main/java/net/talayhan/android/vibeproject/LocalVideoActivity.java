@@ -48,7 +48,7 @@ public class LocalVideoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_media_informations);
+        setContentView(R.layout.activity_vibe);
         
         /* Video settings */
         mVideoView_vw = (VideoView) findViewById(R.id.videoView_vw);
@@ -73,6 +73,7 @@ public class LocalVideoActivity extends Activity {
             genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
             
             */
+            /*
             
             allOtherInformation += "\n\nNew Row\n";
             allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_AUTHOR) + "\n";
@@ -95,6 +96,7 @@ public class LocalVideoActivity extends Activity {
             
             informations.setText(allOtherInformation);
 
+            */
         }
         catch (Exception e) 
         { 
@@ -107,14 +109,14 @@ public class LocalVideoActivity extends Activity {
         }
 
         
-        /* Custom video settings for internet *
+        /* Custom video settings for internet */
         mVideoView_vw.setVideoURI(vidUri);
         mVideoView_vw.setMediaController(new MediaController(LocalVideoActivity.this));
         mVideoView_vw.start();
         
         Intent transparentLayoutInt = new Intent(LocalVideoActivity.this, DrawingActivity.class);
         startActivityForResult(transparentLayoutInt,Constants.REQUEST_FINISH);
-        */
+
 
 
     }
