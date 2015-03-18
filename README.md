@@ -68,3 +68,5 @@ There's the first aim of this project create a telestrator android app prototype
     [+] Video information ekranı tasarlandı, [03.06.15]
         [+]video bilgileri çekilmesi için araştırma yapıldı.
     [+] Firebase için küçük bir test uygulaması yazıldı. [03.10.15]
+    [+] Backward and Forward button implemented.
+    [+] Capture button works.

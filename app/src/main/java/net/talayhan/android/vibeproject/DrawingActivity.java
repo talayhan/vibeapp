@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 /**
  * Created by root on 2/20/15.
  */
@@ -30,7 +32,7 @@ public class DrawingActivity extends Activity {
     private ImageButton mCapture_bt;
     
     /* Footer seekbar. */
-    private SeekBar videoSeekbar_sb;
+    private DiscreteSeekBar videoSeekbar_sb;
 
     /* Utility members */
     private Boolean isPause = false;
@@ -70,9 +72,9 @@ public class DrawingActivity extends Activity {
             public void onClick(View v) {
                 int currentPosition = LocalVideoActivity.mVideoView_vw.getCurrentPosition();
                 // check if seekBackward time is greater than 0 sec
-                if(currentPosition + seekBackwardTime <= LocalVideoActivity.mVideoView_vw.getDuration()){
+                if(currentPosition + seekForwardTime <= LocalVideoActivity.mVideoView_vw.getDuration()){
                     // forward to video
-                    LocalVideoActivity.mVideoView_vw.seekTo(currentPosition - seekBackwardTime);
+                    LocalVideoActivity.mVideoView_vw.seekTo(currentPosition + seekForwardTime);
                 }else{
                     // forward to end position
                     LocalVideoActivity.mVideoView_vw.seekTo(LocalVideoActivity.mVideoView_vw.getDuration());
@@ -135,27 +137,26 @@ public class DrawingActivity extends Activity {
         });
         
         /* Initialize seekbar to using forward and backward */
-        videoSeekbar_sb = (SeekBar) findViewById(R.id.seek_bar);
+        videoSeekbar_sb = (DiscreteSeekBar) findViewById(R.id.discrete_seek_bar);
         /* set progress bar values */
         videoSeekbar_sb.setProgress(0);
         videoSeekbar_sb.setMax(100);
-        videoSeekbar_sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        videoSeekbar_sb.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
 
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
 
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
 
             }
         });
-        
     }
     
 
