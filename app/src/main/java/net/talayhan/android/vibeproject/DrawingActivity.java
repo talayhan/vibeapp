@@ -26,13 +26,16 @@ public class DrawingActivity extends Activity {
     /* Toolbar buttons */
     private ImageButton mPlayPause_bt;
     private ImageButton mForward_bt;
+    private ImageButton mBackward_bt;
     private ImageButton mCapture_bt;
     
     /* Footer seekbar. */
-    private SeekBar videoProgressbar_sb;
+    private SeekBar videoSeekbar_sb;
 
-    /*  */
+    /* Utility members */
     private Boolean isPause = false;
+    private int seekForwardTime = 5000;
+    private int seekBackwardTime = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,32 @@ public class DrawingActivity extends Activity {
         mForward_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocalVideoActivity.mVideoView_vw.seekTo(3400);
+                int currentPosition = LocalVideoActivity.mVideoView_vw.getCurrentPosition();
+                // check if seekBackward time is greater than 0 sec
+                if(currentPosition + seekBackwardTime <= LocalVideoActivity.mVideoView_vw.getDuration()){
+                    // forward to video
+                    LocalVideoActivity.mVideoView_vw.seekTo(currentPosition - seekBackwardTime);
+                }else{
+                    // forward to end position
+                    LocalVideoActivity.mVideoView_vw.seekTo(LocalVideoActivity.mVideoView_vw.getDuration());
+                }
+
+            }
+        });
+        
+        mBackward_bt = (ImageButton) findViewById(R.id.backward_bt);
+        mBackward_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentPosition = LocalVideoActivity.mVideoView_vw.getCurrentPosition();
+                // check if seekBackward time is greater than 0 sec
+                if(currentPosition - seekBackwardTime >= 0){
+                    // backward to video
+                    LocalVideoActivity.mVideoView_vw.seekTo(currentPosition - seekBackwardTime);
+                }else{
+                    // backward to starting position
+                    LocalVideoActivity.mVideoView_vw.seekTo(0);
+                }
             }
         });
 
@@ -105,7 +133,32 @@ public class DrawingActivity extends Activity {
 
             }
         });
+        
+        /* Initialize seekbar to using forward and backward */
+        videoSeekbar_sb = (SeekBar) findViewById(R.id.seek_bar);
+        /* set progress bar values */
+        videoSeekbar_sb.setProgress(0);
+        videoSeekbar_sb.setMax(100);
+        videoSeekbar_sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        
     }
+    
+
     
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
