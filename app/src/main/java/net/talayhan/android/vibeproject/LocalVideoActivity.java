@@ -21,15 +21,17 @@ public class LocalVideoActivity extends Activity {
 
     /* private members */
     public static VideoView mVideoView_vw;
+    public static MediaMetadataRetriever metaRetriver;
     private static String vidAddress;
     private Uri vidUri;
     private Boolean firstLooking = true;
     private String allOtherInformation;
 
+    
     /* Test variables */
     ImageView album_art; 
     TextView album, artist, genre, informations;
-    MediaMetadataRetriever metaRetriver;
+    
     byte[] art;
 
     // Fetch Id's form xml 
@@ -53,59 +55,23 @@ public class LocalVideoActivity extends Activity {
         /* Video settings */
         mVideoView_vw = (VideoView) findViewById(R.id.videoView_vw);
         vidAddress = getIntent().getStringExtra(Constants.EXTRA_ANSWER_IS_TRUE);
+        /* Show video file url's to as Toast message. */
         Toast.makeText(LocalVideoActivity.this,vidAddress, Toast.LENGTH_LONG).show();
-
         vidUri = Uri.parse(vidAddress);
 
 
         getInit();
-        metaRetriver = new MediaMetadataRetriever(); 
+        metaRetriver = new MediaMetadataRetriever();
         metaRetriver.setDataSource(vidAddress);
         try {
-            /*
-            art = metaRetriver.getEmbeddedPicture(); 
-            Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
-            album_art.setImageBitmap(songImage); 
-            album.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)); 
-            artist.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)); 
-            genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE));
-
-            genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
-            
-            */
-            /*
-            
-            allOtherInformation += "\n\nNew Row\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_AUTHOR) + "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CD_TRACK_NUMBER)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION) + "\n\n";
-            
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION)+ "\n\n";
-            
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_YEAR)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_LOCATION)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE)+ "\n";
-            
-            informations.setText(allOtherInformation);
-
-            */
+            testMediaRetrieverInfo();
         }
         catch (Exception e) 
-        { 
-            /*
+        {
             album_art.setBackgroundColor(Color.GRAY);
-            album.setText("Unknown Album"); 
-            artist.setText("Unknown Artist"); 
-            genre.setText("Unknown Genre");
-             */
+            album.setText("[Exception] - Unknown Album");
+            artist.setText("[Exception] - Unknown Artist");
+            genre.setText("[Exception] - Unknown Genre");
         }
 
         
@@ -119,6 +85,50 @@ public class LocalVideoActivity extends Activity {
 
 
 
+    }
+
+    /**
+     * @deprecated This method may useless. *
+     * @return void
+     * This method checks mediaretriever object to get all information about video.
+     * * * * */
+    private void testMediaRetrieverInfo() {
+
+            /*
+            art = metaRetriver.getEmbeddedPicture();
+            Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+            album_art.setImageBitmap(songImage);
+            album.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
+            artist.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+            genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE));
+
+            genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+
+            */
+            /*
+
+            allOtherInformation += "\n\nNew Row\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_AUTHOR) + "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CD_TRACK_NUMBER)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION) + "\n\n";
+
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION)+ "\n\n";
+
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_YEAR)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_LOCATION)+ "\n";
+            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE)+ "\n";
+
+            informations.setText(allOtherInformation);
+
+            */
     }
 
     @Override
