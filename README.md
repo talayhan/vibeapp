@@ -33,7 +33,7 @@ There's the first aim of this project create a telestrator android app prototype
 
 ###TODO
 
-    
+    [-] Video uzantılarını kontrol edicek bir string parser method yazılacak. [03.20.15]
     [-] Seekbar implement edilecek.
     [-] Playback implement edilecek.
         [-] Belirli saniyelerde draw etme işlemi. Bitmap vs.
@@ -49,9 +49,13 @@ There's the first aim of this project create a telestrator android app prototype
 
     [-] Take a partial screenshot and save image to sdcard.
 
-###Testing
+###BUG-List
     [-] There is a bug when user change the screen orientation portrait to landscape.
     [-] When user press the back button playing the video,
+    [-] Dosya formatı kontorlü yok, patlıyo.
+
+    
+    
 
 ###Done-List
 
@@ -70,4 +74,4 @@ There's the first aim of this project create a telestrator android app prototype
         [+]video bilgileri çekilmesi için araştırma yapıldı.
     [+] Firebase için küçük bir test uygulaması yazıldı. [03.10.15]
     [+] Backward and Forward button implemented.
-    [+] Capture button works.
+    [+] Capture button works. [03.18.15]
