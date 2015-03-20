@@ -11,13 +11,35 @@
         android:layout_height="fill_parent"
         android:layout_weight="8"
         android:orientation="vertical">
-        
-        <net.talayhan.android.vibeproject.View.CircleTestView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="5"
-            />
-        
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+            
+            <net.talayhan.android.vibeproject.View.CircleTestView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"    
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Duration"
+                android:padding="@dimen/padding_size_bt"
+                android:id="@+id/totalDuration_tv"
+                
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="124dp"
+                android:text="Current Duration"
+                android:padding="@dimen/padding_size_bt"
+                android:id="@+id/currentDuration_tv"
+                />
+        </FrameLayout>
+
         <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -29,19 +51,6 @@
             android:id="@+id/discrete_seek_bar"
             />
         
-        <!--
-        <SeekBar
-            android:id="@+id/songProgressBar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:thumb="@drawable/seek_handler"
-            android:progressDrawable="@drawable/seekbar_progress"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
-            android:layout_gravity="bottom"
-            />
-        -->
     </LinearLayout>
         
     <LinearLayout
@@ -55,7 +64,8 @@
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:id="@+id/play_bt"
-            android:background="@drawable/btn_play" />
+            android:background="@drawable/btn_play" 
+            />
         <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"

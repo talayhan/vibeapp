@@ -12,12 +12,17 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.talayhan.android.vibeproject.R;
 import net.talayhan.android.vibeproject.Util.Constants;
+import net.talayhan.android.vibeproject.Util.Utilities;
+
+import android.os.Handler;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+import org.w3c.dom.Text;
 
 /**
  * Created by root on 2/20/15.
@@ -30,6 +35,9 @@ public class DrawingActivity extends Activity {
     private ImageButton mBackward_bt;
     private ImageButton mCapture_bt;
     
+    private TextView mCurrentDuration_tv;
+    private TextView mTotalDuration_tv;
+    
     /* Footer seekbar. */
     private DiscreteSeekBar videoSeekbar_sb;
 
@@ -37,11 +45,19 @@ public class DrawingActivity extends Activity {
     private Boolean isPause = false;
     private int seekForwardTime = 5000;
     private int seekBackwardTime = 5000;
+    private Utilities utils = new Utilities();
 
+    /* Thread handler */
+    private Handler mHandler = new Handler();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawing);
+        
+        /* initiliaze duration labels */
+        mCurrentDuration_tv = (TextView) findViewById(R.id.currentDuration_tv);
+        mTotalDuration_tv = (TextView) findViewById(R.id.totalDuration_tv);
 
         /* initialize the button */
         mPlayPause_bt = (ImageButton) findViewById(R.id.play_bt);
@@ -140,6 +156,7 @@ public class DrawingActivity extends Activity {
         /* set progress bar values */
         videoSeekbar_sb.setProgress(0);
         videoSeekbar_sb.setMax(100);
+        
         videoSeekbar_sb.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
@@ -148,15 +165,56 @@ public class DrawingActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
-
+                // remove message Handler from updating progress bar
+                mHandler.removeCallbacks(mUpdateTimeTask);
             }
 
             @Override
             public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+                mHandler.removeCallbacks(mUpdateTimeTask);
+                int totalDuration = LocalVideoActivity.mVideoView_vw.getDuration();
+                int currentPosition = utils.progressToTimer(seekBar.getProgress(), totalDuration);
 
+                // forward or backward to certain seconds
+                LocalVideoActivity.mVideoView_vw.seekTo(currentPosition);
+
+                // update timer progress again
+                updateProgressBar();
             }
         });
+        
+        updateProgressBar();
     }
+
+    /**
+     * Update timer on seekbar
+     * */
+    public void updateProgressBar() {
+        mHandler.postDelayed(mUpdateTimeTask, 100);
+    }
+    
+    /*
+    * Background Runnable Thread* */
+    private Runnable mUpdateTimeTask = new Runnable() {
+        @Override
+        public void run() {
+            long totalDuration = LocalVideoActivity.mVideoView_vw.getDuration();
+            long currentDuration = LocalVideoActivity.mVideoView_vw.getCurrentPosition();
+
+            // Displaying Total Duration time
+            mTotalDuration_tv.setText(""+utils.milliSecondsToTimer(totalDuration));
+            // Displaying time completed playing
+            mCurrentDuration_tv.setText(""+utils.milliSecondsToTimer(currentDuration));
+            // Updating progress bar
+            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            videoSeekbar_sb.setProgress(progress);
+
+
+            // Running this thread after 100 milliseconds
+            mHandler.postDelayed(this, 100);
+        }
+    };
     
 
     
