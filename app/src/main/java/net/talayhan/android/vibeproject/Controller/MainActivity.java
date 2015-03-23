@@ -80,6 +80,7 @@ public class MainActivity extends Activity {
                                         @Override
                                         public void onClick(SweetAlertDialog sweetAlertDialog) {
                                             showNoConnectionDialog(MainActivity.this);
+                                            sweetAlertDialog.dismissWithAnimation();
                                         }
                                     })
                                     .show();
@@ -226,7 +227,7 @@ public class MainActivity extends Activity {
         builder.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                ctx.startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                ctx.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
                 builder.dismissWithAnimation();     
             }
         });

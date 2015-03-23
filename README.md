@@ -34,12 +34,11 @@ There's the first aim of this project create a telestrator android app prototype
 ###TODO
 
     [-] Video uzantılarını kontrol edicek bir string parser method yazılacak. [03.20.15]
-    [-] Seekbar implement edilecek.
     [-] Playback implement edilecek.
         [-] Belirli saniyelerde draw etme işlemi. Bitmap vs.
     [-] Chart library test ve implementasyon detayları.
     [-] Real-time senkronizasyon için başta Firebase kullanılacak.
-    
+    [-] When user start to play video on internet, you should wait for a while, using spinner.
 
 ###Tasarım TODO-List
 
@@ -51,7 +50,7 @@ There's the first aim of this project create a telestrator android app prototype
 
 ###BUG-List
     [-] There is a bug when user change the screen orientation portrait to landscape.
-    [-] When user press the back button playing the video,
+    [+] When user press the back button playing the video,
     [-] Dosya formatı kontorlü yok, patlıyo.
 
     
@@ -75,3 +74,4 @@ There's the first aim of this project create a telestrator android app prototype
     [+] Firebase için küçük bir test uygulaması yazıldı. [03.10.15]
     [+] Backward and Forward button implemented.
     [+] Capture button works. [03.18.15]
+    [+] Seekbar implement edilecek.[03.23.15]

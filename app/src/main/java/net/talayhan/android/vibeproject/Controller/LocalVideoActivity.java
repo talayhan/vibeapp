@@ -75,6 +75,7 @@ public class LocalVideoActivity extends Activity {
             genre.setText("[Exception] - Unknown Genre");
         }
 
+
         
         /* Custom video settings for internet */
         mVideoView_vw.setVideoURI(vidUri);
