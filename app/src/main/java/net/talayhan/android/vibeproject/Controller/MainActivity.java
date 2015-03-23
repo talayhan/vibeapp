@@ -1,5 +1,6 @@
 package net.talayhan.android.vibeproject.Controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,7 +26,7 @@ import java.io.File;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     /* private members */
     private Button mFileChooser_bt;
@@ -250,8 +251,15 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if (id == R.id.action_search){
+            openSearch();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openSearch() {
+        Toast.makeText(this,"Clicked Search button", Toast.LENGTH_SHORT).show();
     }
 }

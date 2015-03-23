@@ -9,5 +9,6 @@
     <string name="menu_screen_header">Vibe Project Title!</string>
     <string name="coordinates_chart">Coordinates Chart</string>
     <string name="playBack_string">Playback</string>
+    <string name="search_string">Search</string>
 
 </resources>
