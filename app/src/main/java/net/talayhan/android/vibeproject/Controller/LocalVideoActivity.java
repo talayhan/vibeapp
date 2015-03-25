@@ -15,6 +15,8 @@ import android.widget.VideoView;
 import net.talayhan.android.vibeproject.R;
 import net.talayhan.android.vibeproject.Util.Constants;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by root on 2/19/15.
  */
@@ -59,11 +61,31 @@ public class LocalVideoActivity extends Activity {
         /* Show video file url's to as Toast message. */
         Toast.makeText(LocalVideoActivity.this,vidAddress, Toast.LENGTH_LONG).show();
         vidUri = Uri.parse(vidAddress);
+        
+        /* wait for a minute to load video file from the internet */
+        final SweetAlertDialog loadingDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        loadingDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        loadingDialog.setTitleText("Loading");
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                loadingDialog.dismissWithAnimation();
 
+            }
+        }).start();
+        
         getInit();
         metaRetriver = new MediaMetadataRetriever();
-        metaRetriver.setDataSource(vidAddress);
+        if (!vidAddress.contains("http"))
+            metaRetriver.setDataSource(vidAddress);
         try {
             testMediaRetrieverInfo();
         }

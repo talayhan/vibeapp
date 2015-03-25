@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
     private String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
 
     private SweetAlertDialog pDialog;
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,63 +108,7 @@ public class MainActivity extends Activity {
                 startActivityForResult(i, Constants.REQUEST_CHART);
             }
         });
-        
-        
-        
-        /*
-        new AlertDialog.Builder(this)
-                .setTitle("Internet or Local?")
-                .setMessage("Would you like to watch the video on the internet or local storage?")
-                .setPositiveButton("Internet", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        
-                        // Internet
-                            /* define string to test VideoView component *
-                        vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
-                        
-                        vidUri = Uri.parse(vidAddress);
-                            
-                            /* Custom video settings for internet *
-                        mVideoView_vw.setVideoURI(vidUri);
-                        mVideoView_vw.setMediaController(new MediaController(LocalVideoActivity.this));
-                        mVideoView_vw.start();
-                            
-                            /* Start transparent activity *
-                        Intent intent = new Intent(LocalVideoActivity.this, DrawingActivity.class);
-                        startActivityForResult(intent, Constants.REQUEST_CHOOSER);
-                        
-                        *
-                    }
-                })
 
-                */
-
-        /* initialize file chooser button *
-        mFileChooser_bt = (Button) findViewById(R.id.fileChooser_bt);
-        mFileChooser_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create the ACTION_GET_CONTENT Intent
-                Intent getContentIntent = FileUtils.createGetContentIntent();
-
-                Intent intent = Intent.createChooser(getContentIntent, "Select a file");
-                startActivityForResult(intent, Constants.REQUEST_CHOOSER);
-            }
-        });
-        
-        /* initialize video test button *
-        mVibe_bt = (Button) findViewById(R.id.vibeTest_bt);
-        mVibe_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create the intent to start video activity
-                Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
-                startActivity(i);
-                
-            }
-        });
-        */
     }
 
     @Override

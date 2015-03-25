@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import net.talayhan.android.vibeproject.Controller.LocalVideoActivity;
 import net.talayhan.android.vibeproject.R;
 
@@ -202,7 +204,7 @@ public class CircleTestView extends View {
             case MotionEvent.ACTION_MOVE:
                 final int pointerCount = event.getPointerCount();
 
-                Log.w(TAG, "ACTION_MOVE");
+                Logger.w(TAG,"ACTION MOVE");
 
                 for (actionIndex = 0; actionIndex < pointerCount; actionIndex++) {
                     // Some pointer has moved, search it by pointer id
@@ -253,40 +255,7 @@ public class CircleTestView extends View {
 
         return super.onTouchEvent(event) || handled;
     }
-    
-/*
-    private void saveScreenshotToSDCard(VideoView vv){
-        Bitmap bitmap;
-        
-        
-        //v1.setDrawingCacheEnabled(true);
-        //bitmap = Bitmap.createBitmap(v1.getDrawingCache());
-        bitmap = vv.
 
-        //v1.setDrawingCacheEnabled(false);
-
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-
-        //you can create a new file name "test.jpg" in sdcard folder.
-        File f = new File(Environment.getExternalStorageDirectory()
-                + File.separator + "test" + i++ + ".jpg");
-        try {
-            //write the bytes in file
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-
-            // remember close de FileOutput
-            fo.close();
-            f.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Log.d("[+] SDCARD DEBUG","Screenshot");
-    }
-*/
-    
     /**
      * Clears all CircleArea - pointer id relations
      */
