@@ -1,9 +1,5 @@
 package net.talayhan.android.vibeproject.View;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,22 +14,25 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
 import net.talayhan.android.vibeproject.Controller.LocalVideoActivity;
 import net.talayhan.android.vibeproject.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by root on 2/20/15.
  */
-public class CircleTestView extends View {
+public class CircleView extends View {
     
     public static int i = 0;
-    
+
     //drawing path
     private Path drawPath;
     //drawing and canvas paint
@@ -45,7 +44,7 @@ public class CircleTestView extends View {
     //canvas bitmap
     private Bitmap canvasBitmap;
 
-    private static final String TAG = "CirclesDrawingView";
+    private static final String TAG = "CIRCLES_DRAWING_VIEW";
     private boolean isFirst = true;
 
     /** Main bitmap */
@@ -70,17 +69,17 @@ public class CircleTestView extends View {
      *
      * @param ct {@link android.content.Context}
      */
-    public CircleTestView(final Context ct) {
+    public CircleView(final Context ct) {
         super(ct);
         init(ct);
     }
 
-    public CircleTestView(final Context ct, final AttributeSet attrs) {
+    public CircleView(final Context ct, final AttributeSet attrs) {
         super(ct, attrs);
         init(ct);
     }
 
-    public CircleTestView(final Context ct, final AttributeSet attrs, final int defStyle) {
+    public CircleView(final Context ct, final AttributeSet attrs, final int defStyle) {
         super(ct, attrs, defStyle);
         init(ct);
     }
@@ -179,8 +178,6 @@ public class CircleTestView extends View {
                 invalidate();
                 handled = true;
 
-                Log.d("CirclesDrawing", "ACTION_DOWN");
-
                 break;
 
             case MotionEvent.ACTION_POINTER_DOWN:
@@ -204,8 +201,6 @@ public class CircleTestView extends View {
             case MotionEvent.ACTION_MOVE:
                 final int pointerCount = event.getPointerCount();
 
-                Logger.w(TAG,"ACTION MOVE");
-
                 for (actionIndex = 0; actionIndex < pointerCount; actionIndex++) {
                     // Some pointer has moved, search it by pointer id
                     pointerId = event.getPointerId(actionIndex);
@@ -228,10 +223,6 @@ public class CircleTestView extends View {
                 clearCirclePointer();
                 invalidate();
                 handled = true;
-
-                //MyVideoPlayer.actualVideoView.start();
-                Toast.makeText(getContext(), "Start", Toast.LENGTH_SHORT).show();
-                Log.d("CirclesDrawing", "ACTION_UP");
 
                 break;
 
@@ -260,8 +251,6 @@ public class CircleTestView extends View {
      * Clears all CircleArea - pointer id relations
      */
     private void clearCirclePointer() {
-        Log.w(TAG, "clearCirclePointer");
-
         mCirclePointer.clear();
     }
 
@@ -308,7 +297,7 @@ public class CircleTestView extends View {
         for (CircleArea circle : mCircles) {
             if ((circle.centerX - xTouch) * (circle.centerX - xTouch) + (circle.centerY - yTouch) * (circle.centerY - yTouch) <= circle.radius * circle.radius) {
                 touched = circle;
-                Toast.makeText(getContext(),"X:"+ xTouch+"Y:"+ yTouch,Toast.LENGTH_SHORT).show();
+                Logger.d("GET_TOUCHED_CIRCLE", "X: " + xTouch + "\tY:" + yTouch);
                 break;
             }
         }
@@ -323,7 +312,6 @@ public class CircleTestView extends View {
     @Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         mMeasuredRect = new Rect(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 

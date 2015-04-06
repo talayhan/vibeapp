@@ -2,6 +2,7 @@ package net.talayhan.android.vibeproject.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,7 +54,24 @@ public class LocalVideoActivity extends Activity {
         Toast.makeText(LocalVideoActivity.this,vidAddress, Toast.LENGTH_LONG).show();
         vidUri = Uri.parse(vidAddress);
 
+
         getInit();
+        metaRetriver = new MediaMetadataRetriever();
+        if (!vidAddress.contains("http"))
+            metaRetriver.setDataSource(vidAddress);
+        try {
+            testMediaRetrieverInfo();
+        }
+        catch (Exception e)
+        {
+            album_art.setBackgroundColor(Color.GRAY);
+            album.setText("[Exception] - Unknown Album");
+            artist.setText("[Exception] - Unknown Artist");
+            genre.setText("[Exception] - Unknown Genre");
+        }
+
+
+
         /* Custom video settings for internet */
         mVideoView_vw.setVideoURI(vidUri);
         mVideoView_vw.setMediaController(new MediaController(LocalVideoActivity.this));
@@ -61,6 +79,18 @@ public class LocalVideoActivity extends Activity {
         
         Intent transparentLayoutInt = new Intent(LocalVideoActivity.this, DrawingActivity.class);
         startActivityForResult(transparentLayoutInt,Constants.REQUEST_FINISH);
+
+
+
+    }
+
+    /**
+     * @deprecated This method may useless. *
+     * @return void
+     * This method checks mediaretriever object to get all information about video.
+     * * * * */
+    private void testMediaRetrieverInfo() {
+
     }
 
     @Override
