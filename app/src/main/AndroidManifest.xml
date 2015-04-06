@@ -35,6 +35,7 @@
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <!-- Chart activities -->
         <activity android:name=".Controller.ChartActivity" />
+        <activity android:name=".Controller.ChartRecyclerView" />
 
         <!-- Using Android File Chooser Library -->
         <activity

@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +29,7 @@ public class MainActivity extends Activity {
 
     /* private members */
     private Button mFileChooser_bt;
+    private Button mPlayback_bt;
     private Button mChart_bt;
     private String videoPath;
     private String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
@@ -99,12 +99,30 @@ public class MainActivity extends Activity {
 
             }
         });
-        
+
+        mPlayback_bt = (Button) findViewById(R.id.playBack_btn);
+        mPlayback_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE)
+                        .setContentText("Please first label some video!\n" +
+                                        "Later come back here!.")
+                        .setTitleText("Playback")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+            }
+        });
+
         mChart_bt = (Button) findViewById(R.id.chart_bt);
         mChart_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, ChartActivity.class);
+                Intent i = new Intent(MainActivity.this, ChartRecyclerView.class);
                 startActivityForResult(i, Constants.REQUEST_CHART);
             }
         });
