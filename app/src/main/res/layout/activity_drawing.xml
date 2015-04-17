@@ -1,9 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="9"
+    android:baselineAligned="false">
 
-    <VideoView
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="8"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+            
+            <net.talayhan.android.vibeproject.View.CircleView
+                android:id="@+id/circle_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"    
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Duration"
+                android:padding="@dimen/padding_size_bt"
+                android:id="@+id/totalDuration_tv"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="124dp"
+                android:text="Current Duration"
+                android:padding="@dimen/padding_size_bt"
+                android:id="@+id/currentDuration_tv"
+                />
+        </FrameLayout>
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="2"
+            android:id="@+id/discrete_seek_bar"
+            />
+        
+    </LinearLayout>
+        
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:id="@+id/play_bt"
+            android:background="@drawable/btn_play"
+            android:maxHeight="120dp"
+            android:maxWidth="120dp" />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:text="Frw"
+            android:background="@drawable/btn_forward"
+            android:id="@+id/forward_bt"
+            />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:background="@drawable/btn_backward"
+            android:id="@+id/backward_bt"
+            />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:background="@drawable/img_btn_repeat"
+            android:id="@+id/accelarator"
+            />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:id="@+id/capture_bt"
+            android:background="@drawable/ic_action_photo"
+            />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:text=" "
+            android:id="@+id/list_btn"
+            android:background="@android:drawable/ic_menu_add" />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:text="7"
+            />
+        <ImageButton
+            android:layout_width="@dimen/custom_layout_size_bt"
+            android:layout_height="@dimen/custom_layout_size_bt"
+            android:text="8"
+            />
+    </LinearLayout>
+</LinearLayout>

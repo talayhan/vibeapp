@@ -1,2 +1,2 @@
-include ':app'
-include ':AndroidFileChooser'
+include ':app', 'discreteSeek'
+include ':aFileChooser'

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidFileChooser/AndroidFileChooser.iml" filepath="$PROJECT_DIR$/AndroidFileChooser/AndroidFileChooser.iml" />
       <module fileurl="file://$PROJECT_DIR$/VibeProject.iml" filepath="$PROJECT_DIR$/VibeProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aFileChooser/aFileChooser.iml" filepath="$PROJECT_DIR$/aFileChooser/aFileChooser.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discreteSeek/discreteSeek.iml" filepath="$PROJECT_DIR$/discreteSeek/discreteSeek.iml" />
     </modules>
   </component>
 </project>
