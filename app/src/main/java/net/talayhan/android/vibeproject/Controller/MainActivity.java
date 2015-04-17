@@ -24,15 +24,14 @@ import java.io.File;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class MainActivity extends Activity {
 
-    @InjectView(R.id.fileChooser_bt) private Button mFileChooser_bt;
-    @InjectView(R.id.playBack_btn) private Button mPlayback_bt;
-    @InjectView(R.id.chart_bt) private Button mChart_bt;
+    @InjectView(R.id.fileChooser_bt) Button mFileChooser_bt;
+    @InjectView(R.id.playBack_btn) Button mPlayback_bt;
+    @InjectView(R.id.chart_bt) Button mChart_bt;
 
     private String videoPath;
     private String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
@@ -162,6 +161,7 @@ public class MainActivity extends Activity {
     *
     * - This function inspired by below link,
     * http://stackoverflow.com/questions/1560788/how-to-check-internet-access-on-android-inetaddress-never-timeouts
+    *
     * @return boolean - network state 
     * * * */
     public boolean isOnline() {

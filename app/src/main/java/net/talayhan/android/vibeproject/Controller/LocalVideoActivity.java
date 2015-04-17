@@ -28,7 +28,6 @@ public class LocalVideoActivity extends Activity {
     private Boolean firstLooking = true;
     private String allOtherInformation;
 
-    
     /* Test variables */
     ImageView album_art; 
     TextView album, artist, genre, informations;
@@ -80,8 +79,6 @@ public class LocalVideoActivity extends Activity {
         Intent transparentLayoutInt = new Intent(LocalVideoActivity.this, DrawingActivity.class);
         startActivityForResult(transparentLayoutInt,Constants.REQUEST_FINISH);
 
-
-
     }
 
     /**
@@ -98,7 +95,8 @@ public class LocalVideoActivity extends Activity {
         switch (requestCode)
         {
             case Constants.REQUEST_FINISH:
-                    finish();
+                    Toast.makeText(this,"LOCAL_REQUESTFINISH", Toast.LENGTH_SHORT).show();
+                    this.finish();
                 break;
         }
     }
