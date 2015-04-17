@@ -298,4 +298,9 @@
     <color name="md_blue_grey_800">#37474f</color>
     <color name="md_blue_grey_900">#263238</color>
 
+    <!-- Jazzy Recycler List View -->
+    <color name="background">#323232</color>
+    <color name="even">#FFFFFF</color>
+    <color name="odd">#eeeeee</color>
+
 </resources>

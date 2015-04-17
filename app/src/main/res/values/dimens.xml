@@ -5,4 +5,5 @@
     <dimen name="padding_size_bt">24dp</dimen>
     <dimen name="padding_size_tv">24dp</dimen>
     <dimen name="custom_layout_size_bt">60dp</dimen>
+    <dimen name="item_height">48dp</dimen>
 </resources>

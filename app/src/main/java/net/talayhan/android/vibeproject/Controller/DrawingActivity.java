@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
@@ -15,14 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import net.talayhan.android.vibeproject.R;
 import net.talayhan.android.vibeproject.Util.Constants;
 import net.talayhan.android.vibeproject.Util.Utilities;
-
-import android.os.Handler;
+import net.talayhan.android.vibeproject.View.CircleView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.w3c.dom.Text;
 
 /**
  * Created by root on 2/20/15.
@@ -34,6 +36,8 @@ public class DrawingActivity extends Activity {
     private ImageButton mForward_bt;
     private ImageButton mBackward_bt;
     private ImageButton mCapture_bt;
+    private ImageButton mList_bt;
+    private CircleView mCircleView;
     
     private TextView mCurrentDuration_tv;
     private TextView mTotalDuration_tv;
@@ -46,6 +50,9 @@ public class DrawingActivity extends Activity {
     private int seekForwardTime = 5000;
     private int seekBackwardTime = 5000;
     private Utilities utils = new Utilities();
+
+    public int xTouch;
+    public int yTouch;
 
     /* Thread handler */
     private Handler mHandler = new Handler();
@@ -68,13 +75,15 @@ public class DrawingActivity extends Activity {
                 if (!isPause){
                     LocalVideoActivity.mVideoView_vw.pause();
                     mPlayPause_bt.setImageResource(R.drawable.btn_play);
-                    Toast.makeText(DrawingActivity.this, "Clicked pause :" + isPause, Toast.LENGTH_LONG).show();
+                    Toast.makeText(DrawingActivity.this, "Clicked pause :" + isPause,
+                            Toast.LENGTH_LONG).show();
                     isPause = true;
                 }
                 else {
                     LocalVideoActivity.mVideoView_vw.start();
                     mPlayPause_bt.setImageResource(R.drawable.btn_pause);
-                    Toast.makeText(DrawingActivity.this,"Clicked start :" + isPause,Toast.LENGTH_LONG).show();
+                    Toast.makeText(DrawingActivity.this,"Clicked start :" + isPause,
+                            Toast.LENGTH_LONG).show();
                     isPause = false;
                 }
             }
@@ -150,6 +159,26 @@ public class DrawingActivity extends Activity {
 
             }
         });
+
+        mList_bt = (ImageButton) findViewById(R.id.list_btn);
+        mList_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        /* This view has circle that user created. */
+        mCircleView = (CircleView) findViewById(R.id.circle_view);
+        mCircleView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                xTouch = (int) event.getX();
+                yTouch = (int) event.getY();
+
+                return false;
+            }
+        });
         
         /* Initialize seekbar to using forward and backward */
         videoSeekbar_sb = (DiscreteSeekBar) findViewById(R.id.discrete_seek_bar);
@@ -184,6 +213,7 @@ public class DrawingActivity extends Activity {
         });
         
         updateProgressBar();
+        updateCoordinateFile();
     }
 
     /**
@@ -192,7 +222,22 @@ public class DrawingActivity extends Activity {
     public void updateProgressBar() {
         mHandler.postDelayed(mUpdateTimeTask, 100);
     }
-    
+
+    /**
+     * Update JSON X,Y Coordinates */
+    public void updateCoordinateFile(){ mHandler.postDelayed(mWritingFile, 500); }
+
+    /*
+    * Background Runnable Thread */
+    private Runnable mWritingFile = new Runnable() {
+        @Override
+        public void run() {
+            Logger.d("X: " + xTouch + "\tY: " + yTouch);
+            // Running this thread after 100 milliseconds
+            mHandler.postDelayed(this, 500);
+        }
+    };
+
     /*
     * Background Runnable Thread* */
     private Runnable mUpdateTimeTask = new Runnable() {
@@ -209,15 +254,11 @@ public class DrawingActivity extends Activity {
             int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
             //Log.d("Progress", ""+progress);
             videoSeekbar_sb.setProgress(progress);
-
-
             // Running this thread after 100 milliseconds
             mHandler.postDelayed(this, 100);
         }
     };
-    
 
-    
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)

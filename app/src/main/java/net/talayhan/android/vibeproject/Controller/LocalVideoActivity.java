@@ -15,8 +15,6 @@ import android.widget.VideoView;
 import net.talayhan.android.vibeproject.R;
 import net.talayhan.android.vibeproject.Util.Constants;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 /**
  * Created by root on 2/19/15.
  */
@@ -39,13 +37,7 @@ public class LocalVideoActivity extends Activity {
 
     // Fetch Id's form xml 
     public void getInit() 
-    { 
-        /*
-        album_art = (ImageView) findViewById(R.id.album_art); 
-        album = (TextView) findViewById(R.id.Album); 
-        artist = (TextView) findViewById(R.id.artist_name); 
-        genre = (TextView) findViewById(R.id.genre); 
-        */
+    {
         informations = (TextView) findViewById(R.id.info);
     }
     
@@ -61,27 +53,8 @@ public class LocalVideoActivity extends Activity {
         /* Show video file url's to as Toast message. */
         Toast.makeText(LocalVideoActivity.this,vidAddress, Toast.LENGTH_LONG).show();
         vidUri = Uri.parse(vidAddress);
-        
-        /* wait for a minute to load video file from the internet */
-        final SweetAlertDialog loadingDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        loadingDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        loadingDialog.setTitleText("Loading");
-        loadingDialog.setCancelable(false);
-        loadingDialog.show();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                loadingDialog.dismissWithAnimation();
 
-            }
-        }).start();
-        
         getInit();
         metaRetriver = new MediaMetadataRetriever();
         if (!vidAddress.contains("http"))
@@ -89,7 +62,7 @@ public class LocalVideoActivity extends Activity {
         try {
             testMediaRetrieverInfo();
         }
-        catch (Exception e) 
+        catch (Exception e)
         {
             album_art.setBackgroundColor(Color.GRAY);
             album.setText("[Exception] - Unknown Album");
@@ -98,7 +71,7 @@ public class LocalVideoActivity extends Activity {
         }
 
 
-        
+
         /* Custom video settings for internet */
         mVideoView_vw.setVideoURI(vidUri);
         mVideoView_vw.setMediaController(new MediaController(LocalVideoActivity.this));
@@ -118,41 +91,6 @@ public class LocalVideoActivity extends Activity {
      * * * * */
     private void testMediaRetrieverInfo() {
 
-            /*
-            art = metaRetriver.getEmbeddedPicture();
-            Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
-            album_art.setImageBitmap(songImage);
-            album.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
-            artist.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
-            genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE));
-
-            genre.setText(metaRetriver .extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
-
-            */
-            /*
-
-            allOtherInformation += "\n\nNew Row\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_AUTHOR) + "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CD_TRACK_NUMBER)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION) + "\n\n";
-
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION)+ "\n\n";
-
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_YEAR)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_LOCATION)+ "\n";
-            allOtherInformation += metaRetriver.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE)+ "\n";
-
-            informations.setText(allOtherInformation);
-
-            */
     }
 
     @Override

@@ -46,7 +46,7 @@ There's the first aim of this project create a telestrator android app prototype
 
 ###In-Progress
 
-    [-] Take a partial screenshot and save image to sdcard.
+
 
 ###BUG-List
     [-] There is a bug when user change the screen orientation portrait to landscape.
@@ -75,3 +75,5 @@ There's the first aim of this project create a telestrator android app prototype
     [+] Backward and Forward button implemented.
     [+] Capture button works. [03.18.15]
     [+] Seekbar implement edilecek.[03.23.15]
+-----------------------
+    [+] Take a partial screenshot and save image to sdcard. [04.05.15]

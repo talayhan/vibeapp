@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="5">
             
-            <net.talayhan.android.vibeproject.View.CircleTestView
+            <net.talayhan.android.vibeproject.View.CircleView
+                android:id="@+id/circle_view"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"    
                 />
@@ -27,7 +28,6 @@
                 android:text="Total Duration"
                 android:padding="@dimen/padding_size_bt"
                 android:id="@+id/totalDuration_tv"
-                
                 />
 
             <TextView
@@ -64,8 +64,9 @@
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:id="@+id/play_bt"
-            android:background="@drawable/btn_play" 
-            />
+            android:background="@drawable/btn_play"
+            android:maxHeight="120dp"
+            android:maxWidth="120dp" />
         <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
@@ -95,7 +96,8 @@
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"
             android:text=" "
-            />
+            android:id="@+id/list_btn"
+            android:background="@android:drawable/ic_menu_add" />
         <ImageButton
             android:layout_width="@dimen/custom_layout_size_bt"
             android:layout_height="@dimen/custom_layout_size_bt"

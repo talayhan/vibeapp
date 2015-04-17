@@ -3,12 +3,12 @@ package net.talayhan.android.vibeproject.Controller;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.utils.LimitLine;
-import com.github.mikephil.charting.utils.YLabels;
 
 import net.talayhan.android.vibeproject.R;
 
@@ -80,16 +80,16 @@ public class ChartActivity extends Activity {
         LimitLine ll1 = new LimitLine(130f);
         ll1.setLineWidth(4f);
         ll1.enableDashedLine(10f, 10f, 0f);
-        ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT);
+        ll1.setLabelPosition(LimitLine.LimitLabelPosition.POS_RIGHT);
 
 
         LimitLine ll2 = new LimitLine(130f);
         ll2.setLineWidth(4f);
         ll2.enableDashedLine(10f, 10f, 0f);
-        ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT);
+        ll2.setLabelPosition(LimitLine.LimitLabelPosition.POS_RIGHT);
 
 
-        YLabels leftAxis = mChart.getYLabels();
+        //YAxis.YAxisLabelPosition leftAxis = mChart.getY
 
         // set data
         mChart.setData(data);
