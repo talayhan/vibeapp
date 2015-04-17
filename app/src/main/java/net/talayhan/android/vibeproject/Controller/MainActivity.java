@@ -22,26 +22,28 @@ import net.talayhan.android.vibeproject.Util.Constants;
 
 import java.io.File;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class MainActivity extends Activity {
 
-    /* private members */
-    private Button mFileChooser_bt;
-    private Button mPlayback_bt;
-    private Button mChart_bt;
+    @InjectView(R.id.fileChooser_bt) private Button mFileChooser_bt;
+    @InjectView(R.id.playBack_btn) private Button mPlayback_bt;
+    @InjectView(R.id.chart_bt) private Button mChart_bt;
+
     private String videoPath;
     private String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
-
     private SweetAlertDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
-        mFileChooser_bt = (Button) findViewById(R.id.fileChooser_bt);
         mFileChooser_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {        
@@ -100,7 +102,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        mPlayback_bt = (Button) findViewById(R.id.playBack_btn);
         mPlayback_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +118,7 @@ public class MainActivity extends Activity {
                         .show();
             }
         });
-
-        mChart_bt = (Button) findViewById(R.id.chart_bt);
+        
         mChart_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
                 startActivityForResult(i, Constants.REQUEST_CHART);
             }
         });
-
+        
     }
 
     @Override
@@ -151,7 +151,6 @@ public class MainActivity extends Activity {
                     Intent i = new Intent(MainActivity.this, LocalVideoActivity.class);
                     i.putExtra(Constants.EXTRA_ANSWER_IS_TRUE,path);
                     startActivity(i);
-
                 }
                 break;
         }
