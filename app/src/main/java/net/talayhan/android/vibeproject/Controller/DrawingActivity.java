@@ -17,14 +17,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.orhanobut.logger.Logger;
 
+import net.talayhan.android.vibeproject.Model.Coordinate;
 import net.talayhan.android.vibeproject.R;
 import net.talayhan.android.vibeproject.Util.Constants;
 import net.talayhan.android.vibeproject.Util.Utilities;
 import net.talayhan.android.vibeproject.View.CircleView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * Created by root on 2/20/15.
@@ -54,14 +61,40 @@ public class DrawingActivity extends Activity {
     public int xTouch;
     public int yTouch;
 
+    public static String FIREBASE_URL = "https://scorching-heat-6569.firebaseio.com/";
+    private Firebase mFirebaseRef;
+    
     /* Thread handler */
     private Handler mHandler = new Handler();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_drawing);
-        
+
+        // Setup our Firebase mFirebaseRef
+        mFirebaseRef = new Firebase(FIREBASE_URL).child("coordinatesVibe");
+
+
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                sendThread();
+            }
+
+            private void sendThread() {
+                // Create our 'model', a Chat object
+                if( !(xTouch == 0 && yTouch == 0) ) {
+                    Coordinate coord = new Coordinate(xTouch, yTouch, "VibeTest");
+                    // Create a new, auto-generated child of that chat location, and save our chat data there
+                    mFirebaseRef.push().setValue(coord);
+                }
+            }
+        }, 0, 1, TimeUnit.SECONDS);
+
+
         /* initiliaze duration labels */
         mCurrentDuration_tv = (TextView) findViewById(R.id.currentDuration_tv);
         mTotalDuration_tv = (TextView) findViewById(R.id.totalDuration_tv);
@@ -213,7 +246,6 @@ public class DrawingActivity extends Activity {
         });
         
         updateProgressBar();
-        updateCoordinateFile();
     }
 
     /**
@@ -222,21 +254,6 @@ public class DrawingActivity extends Activity {
     public void updateProgressBar() {
         mHandler.postDelayed(mUpdateTimeTask, 100);
     }
-
-    /**
-     * Update JSON X,Y Coordinates */
-    public void updateCoordinateFile(){ mHandler.postDelayed(mWritingFile, 500); }
-
-    /*
-    * Background Runnable Thread */
-    private Runnable mWritingFile = new Runnable() {
-        @Override
-        public void run() {
-            Logger.d("X: " + xTouch + "\tY: " + yTouch);
-            // Running this thread after 100 milliseconds
-            mHandler.postDelayed(this, 500);
-        }
-    };
 
     /*
     * Background Runnable Thread* */
