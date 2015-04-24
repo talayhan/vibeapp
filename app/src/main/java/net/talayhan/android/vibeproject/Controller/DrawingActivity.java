@@ -5,11 +5,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.JsonWriter;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,27 +26,24 @@ import net.talayhan.android.vibeproject.View.CircleView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
-import java.io.IOException;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 /**
  * Created by root on 2/20/15.
  */
 public class DrawingActivity extends Activity {
 
-    /* Inject View components */
-    @InjectView(R.id.play_bt) ImageButton mPlayPause_bt;
-    @InjectView(R.id.forward_bt) ImageButton mForward_bt;
-    @InjectView(R.id.backward_bt) ImageButton mBackward_bt;
-    @InjectView(R.id.capture_bt) ImageButton mCapture_bt;
-    @InjectView(R.id.list_btn) ImageButton mList_bt;
-    @InjectView(R.id.currentDuration_tv) TextView mCurrentDuration_tv;
-    @InjectView(R.id.totalDuration_tv) TextView mTotalDuration_tv;
+    /* Toolbar buttons */
+    private ImageButton mPlayPause_bt;
+    private ImageButton mForward_bt;
+    private ImageButton mBackward_bt;
+    private ImageButton mCapture_bt;
+    private ImageButton mList_bt;
+    private CircleView mCircleView;
     
-    @InjectView(R.id.circle_view) CircleView mCircleView;
-    @InjectView(R.id.discrete_seek_bar) DiscreteSeekBar videoSeekbar_sb;
+    private TextView mCurrentDuration_tv;
+    private TextView mTotalDuration_tv;
+    
+    /* Footer seekbar. */
+    private DiscreteSeekBar videoSeekbar_sb;
 
     /* Utility members */
     private Boolean isPause = false;
@@ -66,12 +61,13 @@ public class DrawingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawing);
-        ButterKnife.inject(this);
         
         /* initiliaze duration labels */
         mCurrentDuration_tv = (TextView) findViewById(R.id.currentDuration_tv);
         mTotalDuration_tv = (TextView) findViewById(R.id.totalDuration_tv);
 
+        /* initialize the button */
+        mPlayPause_bt = (ImageButton) findViewById(R.id.play_bt);
         mPlayPause_bt.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN) // fix later to using image vector
             @Override
@@ -93,6 +89,8 @@ public class DrawingActivity extends Activity {
             }
         });
         
+        /* Initialize forward button */
+        mForward_bt = (ImageButton) findViewById(R.id.forward_bt);
         mForward_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +107,7 @@ public class DrawingActivity extends Activity {
             }
         });
         
+        mBackward_bt = (ImageButton) findViewById(R.id.backward_bt);
         mBackward_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +123,8 @@ public class DrawingActivity extends Activity {
             }
         });
 
+        /* Initialize capture button */
+        mCapture_bt = (ImageButton) findViewById(R.id.capture_bt);
         mCapture_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +159,8 @@ public class DrawingActivity extends Activity {
 
             }
         });
-        
+
+        mList_bt = (ImageButton) findViewById(R.id.list_btn);
         mList_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,6 +169,7 @@ public class DrawingActivity extends Activity {
         });
 
         /* This view has circle that user created. */
+        mCircleView = (CircleView) findViewById(R.id.circle_view);
         mCircleView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -176,19 +179,13 @@ public class DrawingActivity extends Activity {
                 return false;
             }
         });
-
-        setSeekbarProperties(0, 100);
-        updateProgressBar();
-        updateCoordinateFile();
-    }
-    
-    /*
-    *
-    * * * */
-    private void setSeekbarProperties(int min, int max){
+        
+        /* Initialize seekbar to using forward and backward */
+        videoSeekbar_sb = (DiscreteSeekBar) findViewById(R.id.discrete_seek_bar);
         /* set progress bar values */
-        videoSeekbar_sb.setProgress(min);
-        videoSeekbar_sb.setMax(max);
+        videoSeekbar_sb.setProgress(0);
+        videoSeekbar_sb.setMax(100);
+        
         videoSeekbar_sb.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
@@ -209,10 +206,14 @@ public class DrawingActivity extends Activity {
 
                 // forward or backward to certain seconds
                 LocalVideoActivity.mVideoView_vw.seekTo(currentPosition);
+
                 // update timer progress again
                 updateProgressBar();
             }
         });
+        
+        updateProgressBar();
+        updateCoordinateFile();
     }
 
     /**
@@ -231,19 +232,11 @@ public class DrawingActivity extends Activity {
     private Runnable mWritingFile = new Runnable() {
         @Override
         public void run() {
-            //Logger.d("X: " + xTouch + "\tY: " + yTouch);
+            Logger.d("X: " + xTouch + "\tY: " + yTouch);
             // Running this thread after 100 milliseconds
             mHandler.postDelayed(this, 500);
         }
     };
-
-    public void writeUser(JsonWriter writer, MediaMetadataRetriever retriever, int xTouch, int yTouch) throws IOException {
-        writer.beginObject();
-        writer.name("X").value(xTouch);
-        writer.name("Y").value(yTouch);
-        writer.name("frame_at_a_time").value(String.valueOf(retriever.getFrameAtTime()));
-        writer.endObject();
-    }
 
     /*
     * Background Runnable Thread* */
@@ -271,9 +264,9 @@ public class DrawingActivity extends Activity {
         if (keyCode == KeyEvent.KEYCODE_BACK)
         {
             Toast.makeText(this,"Pressed back Button to back Main Menu.", Toast.LENGTH_SHORT).show();
-            super.finish();
-            Intent resultIntent = new Intent();
-            setResult(Constants.REQUEST_FINISH, resultIntent);
+            Intent in = new Intent();
+            setResult(Constants.REQUEST_FINISH,in);
+            finish();
         }
         return super.onKeyDown(keyCode, event);
     }
