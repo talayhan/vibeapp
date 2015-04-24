@@ -4,7 +4,9 @@ There's the first aim of this project create a telestrator android app prototype
 ---------------
 
 ###In-Progress
-
+    [-] Create Local Database to store coordinates as csv, json and xml.
+    [-] ListView update process.
+    [-] Add butterknife to all activity class. [Priority = 3]
 
 ###TODO
     [-] Video uzantılarını kontrol edicek bir string parser method yazılacak. [03.20.15]
