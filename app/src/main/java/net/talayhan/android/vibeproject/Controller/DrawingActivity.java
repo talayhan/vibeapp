@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.orhanobut.logger.Logger;
 
 import net.talayhan.android.vibeproject.Model.Coordinate;
 import net.talayhan.android.vibeproject.R;
@@ -32,6 +31,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 
 /**
  * Created by root on 2/20/15.
@@ -39,23 +41,23 @@ import java.util.concurrent.TimeUnit;
 public class DrawingActivity extends Activity {
 
     /* Toolbar buttons */
-    private ImageButton mPlayPause_bt;
-    private ImageButton mForward_bt;
-    private ImageButton mBackward_bt;
-    private ImageButton mCapture_bt;
-    private ImageButton mList_bt;
-    private CircleView mCircleView;
+    @InjectView(R.id.forward_bt) ImageButton mForward_bt;
+    @InjectView(R.id.play_bt) ImageButton mPlayPause_bt;
+    @InjectView(R.id.backward_bt) ImageButton mBackward_bt;
+    @InjectView(R.id.capture_bt) ImageButton mCapture_bt;
+    @InjectView(R.id.list_btn) ImageButton mList_bt;
+    @InjectView(R.id.circle_view) CircleView mCircleView;
     
-    private TextView mCurrentDuration_tv;
-    private TextView mTotalDuration_tv;
+    @InjectView(R.id.currentDuration_tv) TextView mCurrentDuration_tv;
+    @InjectView(R.id.totalDuration_tv) TextView mTotalDuration_tv;
     
     /* Footer seekbar. */
-    private DiscreteSeekBar videoSeekbar_sb;
+    @InjectView(R.id.discrete_seek_bar) DiscreteSeekBar videoSeekbar_sb;
 
     /* Utility members */
     private Boolean isPause = false;
-    private int seekForwardTime = 5000;
-    private int seekBackwardTime = 5000;
+    private int seekForwardTime = Constants.FORWARD_TIME;
+    private int seekBackwardTime = Constants.FORWARD_TIME;
     private Utilities utils = new Utilities();
 
     public int xTouch;
@@ -72,9 +74,10 @@ public class DrawingActivity extends Activity {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_drawing);
+        ButterKnife.inject(this);
 
         // Setup our Firebase mFirebaseRef
-        mFirebaseRef = new Firebase(FIREBASE_URL).child("coordinatesVibe");
+        mFirebaseRef = new Firebase(FIREBASE_URL).child("Location:" +LocalVideoActivity.metaRetriver.METADATA_KEY_LOCATION);
 
 
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
@@ -87,20 +90,14 @@ public class DrawingActivity extends Activity {
             private void sendThread() {
                 // Create our 'model', a Chat object
                 if( !(xTouch == 0 && yTouch == 0) ) {
-                    Coordinate coord = new Coordinate(xTouch, yTouch, "VibeTest");
+                    long currentDuration = LocalVideoActivity.mVideoView_vw.getCurrentPosition();
+                    Coordinate coord = new Coordinate(xTouch, yTouch, utils.milliSecondsToTimer(currentDuration));
                     // Create a new, auto-generated child of that chat location, and save our chat data there
                     mFirebaseRef.push().setValue(coord);
                 }
             }
         }, 0, 1, TimeUnit.SECONDS);
 
-
-        /* initiliaze duration labels */
-        mCurrentDuration_tv = (TextView) findViewById(R.id.currentDuration_tv);
-        mTotalDuration_tv = (TextView) findViewById(R.id.totalDuration_tv);
-
-        /* initialize the button */
-        mPlayPause_bt = (ImageButton) findViewById(R.id.play_bt);
         mPlayPause_bt.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN) // fix later to using image vector
             @Override
@@ -122,8 +119,6 @@ public class DrawingActivity extends Activity {
             }
         });
         
-        /* Initialize forward button */
-        mForward_bt = (ImageButton) findViewById(R.id.forward_bt);
         mForward_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +135,6 @@ public class DrawingActivity extends Activity {
             }
         });
         
-        mBackward_bt = (ImageButton) findViewById(R.id.backward_bt);
         mBackward_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,8 +150,6 @@ public class DrawingActivity extends Activity {
             }
         });
 
-        /* Initialize capture button */
-        mCapture_bt = (ImageButton) findViewById(R.id.capture_bt);
         mCapture_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,8 +184,7 @@ public class DrawingActivity extends Activity {
 
             }
         });
-
-        mList_bt = (ImageButton) findViewById(R.id.list_btn);
+        
         mList_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,8 +192,6 @@ public class DrawingActivity extends Activity {
             }
         });
 
-        /* This view has circle that user created. */
-        mCircleView = (CircleView) findViewById(R.id.circle_view);
         mCircleView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -213,8 +202,6 @@ public class DrawingActivity extends Activity {
             }
         });
         
-        /* Initialize seekbar to using forward and backward */
-        videoSeekbar_sb = (DiscreteSeekBar) findViewById(R.id.discrete_seek_bar);
         /* set progress bar values */
         videoSeekbar_sb.setProgress(0);
         videoSeekbar_sb.setMax(100);
