@@ -1,8 +1,7 @@
-#VibeProject
-Video Labeling Android App for People Surveillance.  
+#vibeling
+**Vi**deo La**beling** android application for people surveillance.  
 
 ---
-
-**Note: :warning: Currently this Project is under heavy development.**
-
+:warning: 
+**Note:**Currently this project is under heavy development.
 ---
